@@ -17,7 +17,7 @@ const TutorialsList = () => {
     setSearchTitle(searchTitle);
   };
 
-  const retrieveTutorials = () => {
+  /*const retrieveTutorials = () => {
     TutorialDataService.getAll()
       .then(response => {
         setTutorials(response.data);
@@ -26,6 +26,18 @@ const TutorialsList = () => {
       .catch(e => {
         console.log(e);
       });
+  };*/
+
+  const retrieveTutorials = () => {
+    TutorialDataService.getAll()
+        .then(response => {
+          setTutorials(Array.isArray(response.data) ? response.data : []);
+          console.log("Response: ", response.data);
+        })
+        .catch(e => {
+          console.log(e);
+          setTutorials([]);
+        });
   };
 
   const refreshList = () => {
